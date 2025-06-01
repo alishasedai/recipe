@@ -12,6 +12,8 @@ session_start(); // Start session to check login
     <link rel="stylesheet" href="./assets/login.css" />
     <link rel="stylesheet" href="./assets/register.css">
     <link rel="stylesheet" href="./assets/add_recipe.css">
+    <!-- <link rel="stylesheet" href="./assets/recipe.css"> -->
+    <link rel="stylesheet" href="./assets/edit.css">
 </head>
 
 <body>

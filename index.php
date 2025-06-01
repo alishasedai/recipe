@@ -20,8 +20,8 @@ if (!isset($_SESSION['user_id'])) {
     <section class="recipes-section">
         <div class="recipe-grid">
 
-           
-            
+
+
             <?php
             $query = "SELECT * FROM recipes ORDER BY created_at DESC";
             $result = mysqli_query($conn, $query);
@@ -38,8 +38,10 @@ if (!isset($_SESSION['user_id'])) {
                             <p class="recipe-date"><strong>Created At:</strong> <?php echo date('Y-m-d', strtotime($row['created_at'])); ?></p>
                             <p class="recipe-description"><?php echo substr(htmlspecialchars($row['description']), 0, 100) . '...'; ?></p>
                             <a href="recipe_detail.php?id=<?php echo $row['id']; ?>" class="see-more-btn">See More</a>
-                            <a href="edit_recipe.php?id=<?php echo $row['id']; ?>">Edit</a>
-                            <a href="delete_recipe.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this recipe?');" class="delete-btn">Delete</a>
+                            <div class="edit_delete_recipe">
+                                <a href="edit_recipe.php?id=<?php echo $row['id']; ?>">Edit</a>
+                                <a href="delete_recipe.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this recipe?');" class="delete-btn">Delete</a>
+                            </div>
 
 
                         </div>
