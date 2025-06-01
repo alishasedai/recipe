@@ -1,0 +1,24 @@
+/* Register Container (optional if you want to keep it separate) */
+.register-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin: 0px auto;
+}
+
+/* Register Heading */
+.register-container h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333333;
+}
+
+/* Responsive Tweaks for Register */
+@media (max-width: 500px) {
+    .register-container {
+        padding: 20px;
+    }
+}

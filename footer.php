@@ -1,5 +1,4 @@
 
-</main>
 <footer>
     <div class="footer-content">
         <p>&copy; <?php echo date("Y"); ?> MyRecipes. All rights reserved.</p>
