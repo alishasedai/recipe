@@ -32,6 +32,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ingredients = mysqli_real_escape_string($conn, $_POST['ingredients']);
     $steps = mysqli_real_escape_string($conn, $_POST['steps']);
     $category = mysqli_real_escape_string($conn, $_POST['category']);
+    $imagePath = $recipe['image'];
+
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+        $targetDir = "uploads/";
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0777, true); // create uploads directory if it doesn't exist
+        }
+
+        $imageName = basename($_FILES["image"]["name"]);
+        $targetFile = $targetDir . time() . "_" . $imageName; // Add timestamp for uniqueness
+        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+        $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+
+        if (in_array($imageFileType, $allowedTypes)) {
+            if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
+                $imagePath = $targetFile;
+            } else {
+                echo "Error uploading new image.";
+            }
+        } else {
+            echo "Invalid image format. Only JPG, JPEG, PNG, and GIF are allowed.";
+        }
+    }
 
     // Optional: handle image upload if you want to allow changing image
     // For now, let's keep existing image
@@ -41,7 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     description = '$description',
                     ingredients = '$ingredients',
                     steps = '$steps',
-                    category = '$category'
+                    category = '$category',
+                     image = '$imagePath'
                     WHERE id = $id";
 
     if (mysqli_query($conn, $updateQuery)) {
@@ -80,8 +104,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <!-- Optional: show current image -->
             <label>Current Image:</label><br>
-            <img src="<?php echo htmlspecialchars($recipe['image']); ?>" width="200px" height="200px" alt="Current Image" class="edit-image-preview" ><br><br>
+            <img src="<?php echo htmlspecialchars($recipe['image']); ?>" width="200px" height="200px" alt="Current Image" class="edit-image-preview"><br><br>
 
+            <!-- Allow changing image -->
+            <label>Change Image:</label><br>
+            <input type="file" name="image" accept="image/*"><br><br>
 
             <!-- Optional: allow to upload new image -->
             <!-- <label>Change Image:</label><br>

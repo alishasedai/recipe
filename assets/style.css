@@ -10,29 +10,37 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
 }
 
 .navbar a {
   color: white;
   text-decoration: none;
-  margin: 0 10px;
+  margin: 0 20px;
+  font-size: 30px;
+  font-weight: 600;
+
+
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .navbar .logo {
   font-weight: bold;
-  font-size: 24px;
+  font-size: 30px;
 }
 
 footer {
-  background-color: #f1f1f1;
+  background-color: #4caf50;
   text-align: center;
   padding: 1rem 0;
   margin-top: 2rem;
+  color: white;
+  font-size: 20px;
 }
 
 main {
   min-height: 70vh;
-  padding: 48px 64px;
+  padding: 20px 64px;
 }
 
 /* Recipes Section */
