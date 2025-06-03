@@ -17,6 +17,7 @@ if (!$result || mysqli_num_rows($result) == 0) {
     exit();
 }
 
+
 $recipe = mysqli_fetch_assoc($result);
 ?>
 
