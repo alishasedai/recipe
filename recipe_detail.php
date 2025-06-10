@@ -5,10 +5,9 @@ require_once './db/connection.php';
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     echo "<p style='text-align:center;'>Invalid recipe ID.</p>";
     exit();
-    
 }
 
-$recipe_id = intval($_GET['id']);  // Sanitize input
+$recipe_id = intval($_GET['id']); // Sanitize input
 $query = "SELECT * FROM recipes WHERE id = $recipe_id";
 $result = mysqli_query($conn, $query);
 
@@ -17,8 +16,11 @@ if (!$result || mysqli_num_rows($result) == 0) {
     exit();
 }
 
-
 $recipe = mysqli_fetch_assoc($result);
+
+// Get category from query string if exists, for back navigation
+$category = isset($_GET['category']) ? $_GET['category'] : '';
+$backLink = 'index.php' . ($category ? '?category=' . urlencode($category) : '');
 ?>
 
 <main class="recipe-detail">
@@ -38,7 +40,7 @@ $recipe = mysqli_fetch_assoc($result);
     <p><?php echo nl2br(htmlspecialchars($recipe['steps'])); ?></p>
 
     <br>
-    <a href="index.php" class="back-link">← Back to Recipes</a>
+    <a href="<?php echo $backLink; ?>" class="back-link">← Back to Recipes</a>
 </main>
 
 <?php include 'footer.php'; ?>
