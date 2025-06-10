@@ -31,7 +31,7 @@ $backLink = 'index.php' . ($category ? '?category=' . urlencode($category) : '')
     <h1><?php echo htmlspecialchars($recipe['title']); ?></h1>
     <img src="<?php echo htmlspecialchars($recipe['image']); ?>" alt="<?php echo htmlspecialchars($recipe['title']); ?>" width="500px" height="350px" class="detail-image">
 
-    <p><strong>Category:</strong> <?php echo htmlspecialchars($recipe['category']); ?></p>
+    <p class="badge"><span>Snacksss</span> <?php echo htmlspecialchars($recipe['category']); ?></p>
     <p><strong>Date:</strong> <?php echo date('F d, Y', strtotime($recipe['created_at'])); ?></p>
 
     <h3>Description</h3>

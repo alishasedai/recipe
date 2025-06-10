@@ -27,11 +27,23 @@ if (!isset($_SESSION['user_id'])) {
                     <div class="recipe-card">
                         <img src="<?php echo htmlspecialchars($row['image']); ?>" alt="<?php echo htmlspecialchars($row['title']); ?>" class="recipe-image" />
                         <div class="recipe-content">
+                            <div class="recipe_time">
+                                <p class="recipe-category"><span class="badgee"> <?php echo htmlspecialchars($row['category']); ?> </span></p>
+                                <p class="recipe-date">
+
+                                    <?php
+                                    $timestamp = strtotime($row['created_at']);
+                                    $day = date('j', $timestamp);
+                                    $daySuffix = date('S', $timestamp); // st, nd, rd, th
+                                    echo date('F', $timestamp) . " {$day}{$daySuffix}, " . date('Y', $timestamp);
+                                    ?>
+                                </p>
+
+                            </div>
                             <h2 class="recipe-title"><?php echo htmlspecialchars($row['title']); ?></h2>
-                            <p class="recipe-category"><strong>Category:</strong> <?php echo htmlspecialchars($row['category']); ?></p>
-                            <p class="recipe-date"><strong>Created At:</strong> <?php echo date('Y-m-d', strtotime($row['created_at'])); ?></p>
+                            <!-- <p class="recipe-category"><strong>Category:</strong> <?php echo htmlspecialchars($row['category']); ?></p> -->
                             <p class="recipe-description"><?php echo substr(htmlspecialchars($row['description']), 0, 100) . '...'; ?></p>
-                            <a href="recipe_detail.php?id=<?php echo $row['id']; ?>" class="see-more-btn">See More</a>
+                            <a href="recipe_detail.php?id=<?php echo $row['id']; ?>" class="see-more">See More</a>
                             <div class="edit_delete_recipe">
                                 <a href="edit_recipe.php?id=<?php echo $row['id']; ?>">Edit</a>
                                 <a href="delete_recipe.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this recipe?');" class="delete-btn">Delete</a>
