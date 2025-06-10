@@ -1,5 +1,6 @@
 <?php
 include 'header.php';
+
 require_once './db/connection.php';
 
 if (!isset($_GET['id']) || empty($_GET['id'])) {
@@ -22,10 +23,13 @@ $recipe = mysqli_fetch_assoc($result);
 $category = isset($_GET['category']) ? $_GET['category'] : '';
 $backLink = 'index.php' . ($category ? '?category=' . urlencode($category) : '');
 ?>
+<?php if (basename($_SERVER['PHP_SELF']) == 'recipe_detail.php'): ?>
+    <link rel="stylesheet" href="./assets/recipe_details.css">
+<?php endif; ?>
 
 <main class="recipe-detail">
     <h1><?php echo htmlspecialchars($recipe['title']); ?></h1>
-    <img src="<?php echo htmlspecialchars($recipe['image']); ?>" alt="<?php echo htmlspecialchars($recipe['title']); ?>" width="200px" height="200px" class="detail-image">
+    <img src="<?php echo htmlspecialchars($recipe['image']); ?>" alt="<?php echo htmlspecialchars($recipe['title']); ?>" width="500px" height="350px" class="detail-image">
 
     <p><strong>Category:</strong> <?php echo htmlspecialchars($recipe['category']); ?></p>
     <p><strong>Date:</strong> <?php echo date('F d, Y', strtotime($recipe['created_at'])); ?></p>
