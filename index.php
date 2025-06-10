@@ -43,7 +43,7 @@ if (!isset($_SESSION['user_id'])) {
                             <h2 class="recipe-title"><?php echo htmlspecialchars($row['title']); ?></h2>
                             <!-- <p class="recipe-category"><strong>Category:</strong> <?php echo htmlspecialchars($row['category']); ?></p> -->
                             <p class="recipe-description"><?php echo substr(htmlspecialchars($row['description']), 0, 100) . '...'; ?></p>
-                            <a href="recipe_detail.php?id=<?php echo $row['id']; ?>" class="see-more">See More</a>
+                            <a href="recipe_detail.php?id=<?php echo $row['id']; ?>" class="see-more-btn">See More</a>
                             <div class="edit_delete_recipe">
                                 <a href="edit_recipe.php?id=<?php echo $row['id']; ?>">Edit</a>
                                 <a href="delete_recipe.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this recipe?');" class="delete-btn">Delete</a>

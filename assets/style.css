@@ -127,13 +127,10 @@ main {
 }
 
 /* See More Button */
-.see-more {
-  align-self: flex-start;
-  color: white;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
+.see-more-btn {
+
+ padding: 0px !important;
+  font-weight: 400;
 }
 
 
